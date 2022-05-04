@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
+@SessionAttributes("userdto")
 public class NewTopicController {
     private TopicService topicService;
     private UserService userService;
@@ -22,7 +23,7 @@ public class NewTopicController {
     public TopicDto topicDto(){
         return new TopicDto();
     }
-    @ModelAttribute("user")
+    @ModelAttribute("userdto")
     public UserDto userDto(){
         return new UserDto();
     }
@@ -31,8 +32,11 @@ public class NewTopicController {
         return "/newtopic";
     }
     @PostMapping("/newtopic")
-    public String newTopic(@SessionAttribute("user") UserDto userDto,@ModelAttribute("topic") TopicDto topicDto,Model model){
+    public String newTopic(@ModelAttribute("userdto") UserDto userDto,@ModelAttribute("topic") TopicDto topicDto,Model model){
         User user = userReponsitory.getUserByEmail(userDto.getEmail());
+        if(user== null){
+            return "redirect:/login";
+        }
         topicService.save(topicDto,user);
         return "redirect:/home";
     }

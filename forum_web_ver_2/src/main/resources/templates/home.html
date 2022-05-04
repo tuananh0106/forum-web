@@ -11,48 +11,61 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<th:block th:include="/_header"></th:block>
-
+<th:block th:include="/_header_on" th:if="${userdto.email}"></th:block>
+<th:block th:include="/_header_off" th:unless="${userdto.email}"></th:block>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <!-- success message  -->
-            <div th:if="${param.success}">
-                <div class="alert alert-info"> You are successfull registered to our awsome app!</div>
-            </div>
 
-            <h1>Topics</h1>
-            <table class="table table-striped table-success" th:if="${topics.size() != 0}">
-                <thead>
-                <tr>
-                    <th>Answers</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Created</th>
-                    <th>Enter</th>
-                </tr>
-                </thead>
-                <tbody>
-                <th:block th:each="topic : ${topics}">
-                    <tr>
-                        <td th:text="${commentcount.countComment(topic.id)}">Number of answers</td>
-                        <td th:text="*{topic.title}">Topic's title</td>
-                        <td>
-<!--                            <a th:href="@{'/profile/' + ${topic.getUser().getId()}}">-->
-                                <div class="chip" th:text="${topic.user.userDisplayName}">Topic's author</div>
-<!--                            </a>-->
-                        </td>
-                        <td th:text="*{topic.creationDate}">Topic's created date</td>
-                        <td>
-                            <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-floating pulse">
-                                <i class="bi bi-arrow-right-square-fill"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </th:block>
-                </tbody>
-            </table>
+        <!-- success message  -->
+        <div th:if="${param.success}">
+            <div class="alert alert-info"> You are successfull registered to our awsome app!</div>
         </div>
+
+        <h1>Topics</h1>
+        <table class="table table-striped table-success text-center" th:if="${topics.size() != 0}">
+            <thead>
+            <tr>
+                <th class="col-md-1">Answers</th>
+                <th class="col-md-4">Title</th>
+                <th class="col-md-2">Author</th>
+                <th class="col-md-2">Created</th>
+                <th class="col-md-1">Enter</th>
+                <th class="col-md-2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="topic : ${topics}">
+                <tr>
+                    <td th:text="${commentcount.countComment(topic.id)}">Number of answers</td>
+                    <td th:text="*{topic.title}">Topic's title</td>
+                    <td>
+<!--                            <a th:href="@{'/profile/' + ${topic.getUser().getId()}}">-->
+                            <div class="chip" th:text="${topic.user.userDisplayName}">Topic's author</div>
+<!--                            </a>-->
+                    </td>
+                    <td th:text="*{topic.creationDate}">Topic's created date</td>
+                    <td>
+                        <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-floating pulse">
+                            <i class="bi bi-arrow-right-square-fill"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary text-white" type="button">
+                            <a href="#" class="text-white">
+                                Edit
+                            </a>
+                        </button>
+                        <button class="btn btn-danger" type="button">
+                            <a href="#" class="text-white">
+                                Delete
+                            </a>
+                        </button>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
     </div>
 </div>
 </body>

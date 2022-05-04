@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 public class UserRegistrationController {
     private UserService userService;
-    @ModelAttribute("user")
+    @ModelAttribute("userdto")
     public UserDto userResgistrationDto(){
         return new UserDto();
     }
@@ -22,7 +22,7 @@ public class UserRegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registerUserAccount(@ModelAttribute("user") UserDto userDto){
+    public String registerUserAccount(@ModelAttribute("userdto") UserDto userDto){
         if(userService.checkUserbyEmail(userDto.getEmail())){
             return "redirect:/registration?emailexist";
         }

@@ -10,8 +10,8 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-    <th:block th:include="/_header"></th:block>
-
+<th:block th:include="/_header_on" th:if="${userdto.email}"></th:block>
+<th:block th:include="/_header_off" th:unless="${userdto.email}"></th:block>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -21,7 +21,7 @@
                 </div>
 
                 <h1>Registration</h1>
-                <form th:action="@{/registration}" method="post" th:object="${user}">
+                <form th:action="@{/registration}" method="post" th:object="${userdto}">
                     <div class="form-group">
                         <label class="control-label" for="Email"> Email </label>
                         <input type="text" id="Email" class="form-control" th:field="*{email}" required

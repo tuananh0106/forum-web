@@ -12,10 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
-@SessionAttributes("user")
+@SessionAttributes("userdto")
 public class UserLoginController {
     private UserService userService;
-    @ModelAttribute("user")
+    @ModelAttribute("userdto")
     public UserDto userDto(){
         return new UserDto();
     }
@@ -24,7 +24,7 @@ public class UserLoginController {
         return "/login";
     }
     @PostMapping("/login")
-    public String Login(@ModelAttribute("user") UserDto userDto, Model model){
+    public String Login(@ModelAttribute("userdto") UserDto userDto, Model model){
         if(userService.checkUserbyEmail(userDto.getEmail())==false){
             return "redirect:/login?emailwrong";
         }

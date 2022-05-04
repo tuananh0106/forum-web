@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @Controller
 @AllArgsConstructor
-@SessionAttributes("user")
+@SessionAttributes("userdto")
 public class TopicController{
     private TopicService topicService;
     private UserService userService;
     private CommentService commentService;
-    @ModelAttribute("user")
+    @ModelAttribute("userdto")
     public UserDto userDto(){
         return new UserDto();
     }
@@ -46,7 +46,7 @@ public class TopicController{
         return "topic";
     }
     @PostMapping("/topic/{id}")
-    public String postComment(@ModelAttribute("user") UserDto userDto,
+    public String postComment(@ModelAttribute("userdto") UserDto userDto,
                               @PathVariable String id,
                               @ModelAttribute("newcomment") CommentDto commentDto
     ) {
