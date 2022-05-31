@@ -1,7 +1,9 @@
 package com.example.forum_web_ver_2.service.Impl;
 
 import com.example.forum_web_ver_2.dto.UserDto;
+import com.example.forum_web_ver_2.entity.Profile;
 import com.example.forum_web_ver_2.entity.User;
+import com.example.forum_web_ver_2.reponsitory.ProfileReponsitory;
 import com.example.forum_web_ver_2.reponsitory.UserReponsitory;
 import com.example.forum_web_ver_2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserReponsitory userReponsitory;
+
+    @Autowired
+    private ProfileReponsitory profileReponsitory;
 
     @Override
     public void save(UserDto userDto) {
@@ -30,7 +35,17 @@ public class UserServiceImpl implements UserService {
                 creationDate,
                 "ROLE_USER"
         );
+        Profile profile=new Profile(
+                "First Name",
+                "Last Name",
+                creationDate,
+                "null",
+                "Gender",
+                "Adress",
+                user
+        );
         userReponsitory.save(user);
+        profileReponsitory.save(profile);
     }
 
     @Override

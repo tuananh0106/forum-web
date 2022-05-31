@@ -31,4 +31,14 @@ public class TopicServiceImpl implements TopicService {
     public Topic findTopicById(Integer id) {
         return topicReponsitory.findTopicById(id);
     }
+
+    @Override
+    public void delete(Integer id) {
+        topicReponsitory.deleteById(id);
+    }
+
+    @Override
+    public void update(Topic topic) {
+        topicReponsitory.save(topic);
+    }
 }

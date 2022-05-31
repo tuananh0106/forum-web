@@ -1,4 +1,4 @@
-package com.example.forum_web_ver_2.controller;
+package com.example.forum_web_ver_2.controller.user_login_logout_registration;
 
 import com.example.forum_web_ver_2.dto.UserDto;
 import com.example.forum_web_ver_2.service.UserService;

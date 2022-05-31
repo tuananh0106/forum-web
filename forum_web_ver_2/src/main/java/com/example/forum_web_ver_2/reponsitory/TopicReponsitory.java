@@ -12,4 +12,6 @@ import java.util.List;
 public interface TopicReponsitory extends JpaRepository<Topic,Integer> {
     List<Topic> getAllById(Integer id);
     Topic findTopicById(Integer id);
+    void deleteById(Integer id);
+    Integer countTopicByUser_ID(Integer userId);
 }

@@ -14,21 +14,7 @@ public class ProfileServiceImpl implements ProfileService {
     private ProfileReponsitory profileReponsitory;
 
     @Override
-    public void save(ProfileDto profileDto,User user) {
-        Profile profile=new Profile(
-                profileDto.getFirstName(),
-                profileDto.getLastName(),
-                profileDto.getDateofBirth(),
-                ".",
-                profileDto.getGender(),
-                profileDto.getAdress(),
-                user
-        );
+    public void update(Profile profile) {
         profileReponsitory.save(profile);
-    }
-
-    @Override
-    public Profile findProfileByUser(User user) {
-        return profileReponsitory.findProfileByUser(user);
     }
 }

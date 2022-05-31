@@ -11,4 +11,6 @@ import java.util.List;
 public interface TopicService {
     void save(TopicDto topicDto, User user);
     Topic findTopicById(Integer id);
+    void delete(Integer id);
+    void update(Topic topic);
 }

@@ -11,7 +11,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<th:block th:include="/_header_on" th:if="${userdto.email}"></th:block>
+<th:block th:include="/_header_admin" th:if="${userdto.email}"></th:block>
 <th:block th:include="/_header_off" th:unless="${userdto.email}"></th:block>
 <div class="container">
     <div class="row">
@@ -39,9 +39,9 @@
                     <td th:text="${commentcount.countComment(topic.id)}">Number of answers</td>
                     <td th:text="*{topic.title}">Topic's title</td>
                     <td>
-<!--                            <a th:href="@{'/profile/' + ${topic.getUser().getId()}}">-->
-                            <div class="chip" th:text="${topic.user.userDisplayName}">Topic's author</div>
-<!--                            </a>-->
+                        <!--                            <a th:href="@{'/profile/' + ${topic.getUser().getId()}}">-->
+                        <div class="chip" th:text="${topic.user.userDisplayName}">Topic's author</div>
+                        <!--                            </a>-->
                     </td>
                     <td th:text="*{topic.creationDate}">Topic's created date</td>
                     <td>
@@ -49,14 +49,9 @@
                             <i class="bi bi-arrow-right-square-fill"></i>
                         </a>
                     </td>
-                    <td th:if="${userdto.email == topic.user.email}">
-                        <button class="btn btn-primary text-white" type="button">
-                            <a th:href="@{'/edit_topic/'+${topic.id}}" class="text-white">
-                                Edit
-                            </a>
-                        </button>
+                    <td>  <!--th:if="${userdto.email == topic.user.email}"-->
                         <button class="btn btn-danger" type="button">
-                            <a th:href="@{'/deletetopic/'+${topic.id}}" class="text-white" method=RequestMethod.GET>
+                            <a th:href="@{'admin_home/deletetopic/'+${topic.id}}" class="text-white" method=RequestMethod.GET>
                                 Delete
                             </a>
                         </button>

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Registration</title>
+    <title>New Topic</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
@@ -18,16 +18,22 @@
 
 
                 <h1>CREAT A NEW TOPIC</h1>
-                <form th:action="@{/newtopic}" method="post" th:object="${topic}">
+                <form th:action="@{/newtopic}" method="post">
                     <div class="form-group">
                         <label class="control-label" for="Title"> Title </label>
-                        <input type="text" id="Title" class="form-control" th:field="*{title}" required
+                        <input type="text" id="Title" class="form-control" th:field="${topic.title}" required
                                autofocus="autofocus"/>
                     </div>
 
+
+<!--                    <div class="form-check">-->
+<!--                        <input type="checkbox" class="form-check-input" id="exampleCheck1">-->
+<!--                        <label class="form-check-label" for="exampleCheck1">Check me out</label>-->
+<!--                    </div>-->
+
                     <div class="form-group">
                         <label class="control-label" for="Body"> Body </label>
-                        <textarea id="Body" class="form-control" th:field="*{body}" rows="5" required/>
+                        <textarea id="Body" class="form-control" th:field="*{topic.body}" rows="5" required/>
                     </div>
 
                     <div class="form-group">

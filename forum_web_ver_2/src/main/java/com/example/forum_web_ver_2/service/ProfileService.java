@@ -7,6 +7,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ProfileService {
-    void save(ProfileDto profileDto,User user);
-    Profile findProfileByUser(User user);
+    void update(Profile profile);
 }
